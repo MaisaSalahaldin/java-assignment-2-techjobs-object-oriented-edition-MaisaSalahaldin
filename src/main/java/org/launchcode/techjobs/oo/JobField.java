@@ -12,6 +12,7 @@ public abstract class JobField {
         nextId++;
     }
     public JobField(String value) {
+        this();
         this.value=value;
     }
     public int getId() {
@@ -33,13 +34,13 @@ public abstract class JobField {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof JobField)) return false;
-        JobField jobF = (JobField) o;
-        return getId() == jobF.getId();
+        if (o == null || getClass() != o.getClass()) return false;
+        JobField jobField = (JobField) o;
+        return id == jobField.id && Objects.equals(value, jobField.value);
     }
+
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
-
+        return Objects.hash(id, value);
     }
 }
